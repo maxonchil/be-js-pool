@@ -1,0 +1,21 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "target": "ES5",
+    "module": "amd",
+    "rootDir": "./src",
+    "outDir": "dist",
+    "outFile": "dist/index.js",
+    "removeComments": true,
+    "strict": true,
+    "moduleResolution": "node",
+    "baseUrl": "./",
+    "pretty": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "exclude": [
+    "../node_modules",
+    "src/**/*.spec.ts",
+    "./**/**.**.ts"
+  ]
+}
