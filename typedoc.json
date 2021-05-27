@@ -1,0 +1,11 @@
+{
+  "entryPoints": ["src"],
+  "exclude": [
+    "../node_modules",
+    "src/**/*.spec.ts"
+  ],
+  "highlightTheme": "light-plus",
+  "name": "API Documentation",
+  "out": "docs",
+  "hideGenerator": true
+}
