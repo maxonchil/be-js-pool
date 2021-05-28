@@ -48,7 +48,7 @@ export type StartNewChallengeFn = (
 	tasks: Task[],
 	challenges: Challenge[],
 	challengeDuration: number,
-	achievementsCount: number
+	achievementsCount: number,
 ) => Challenge;
 
 /**
@@ -59,5 +59,5 @@ export type StartNewChallengeFn = (
  */
 export type CalculateAchievementsStatusFn = (
 	achievements: Achievement[],
-	tasksStatuses: TasksStatusMap
+	tasksStatuses: TasksStatusMap,
 ) => AchievementsStatusMap;
