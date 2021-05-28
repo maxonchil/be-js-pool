@@ -1,10 +1,6 @@
-import { Status } from './status.models';
+import { Status } from '@models';
 
-import { checkCompleteFn } from '../types/functions.types';
-
-/**
- * [[Interfaces]]
- */
+import { CheckCompleteFn } from '@types';
 
 /**
  * Base entity which describe 'id' and 'description' types for Achievements.
@@ -21,7 +17,7 @@ interface BaseAchievement {
  */
 export interface Achievement extends BaseAchievement {
 	icon: string;
-	checkComplete: checkCompleteFn;
+	checkComplete: CheckCompleteFn;
 }
 
 /**
@@ -29,6 +25,6 @@ export interface Achievement extends BaseAchievement {
  * @category Interfaces
  */
 export interface ActualAchievement extends BaseAchievement {
-	status: Status;
 	image: string;
+	status: Status;
 }

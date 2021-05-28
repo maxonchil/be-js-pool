@@ -1,4 +1,4 @@
-import { Status } from '../models/status.models';
+import { Status } from '@models';
 
 /**
  * Map of achievements statuses with id as key.

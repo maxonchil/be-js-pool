@@ -1,21 +1,26 @@
 {
   "compileOnSave": true,
   "compilerOptions": {
-    "target": "ES5",
-    "module": "amd",
+    "target": "es5",
+    "module": "es2020",
     "rootDir": "./src",
     "outDir": "dist",
-    "outFile": "dist/index.js",
     "removeComments": true,
     "strict": true,
     "moduleResolution": "node",
     "baseUrl": "./",
     "pretty": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "@enums": ["src/enums"],
+      "@enums/*": ["src/enums/*"],
+      "@models": ["src/models"],
+      "@types": ["src/types"]
+    }
   },
   "exclude": [
     "../node_modules",
     "src/**/*.spec.ts",
-    "./**/**.**.ts"
+    "./jest.config.ts"
   ]
 }

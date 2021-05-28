@@ -1,4 +1,4 @@
-import { Status } from './status.models';
+import { Status } from '@models';
 
 /**
  * Task describes a single action that should be done by the user.

@@ -10,7 +10,6 @@
         "prettier",
         "eslint:recommended",
         "plugin:import/typescript",
-        "plugin:prettier/recommended",
         "plugin:@typescript-eslint/eslint-recommended",
         "plugin:@typescript-eslint/recommended"
     ],
@@ -18,7 +17,6 @@
     "rules": {
         "prefer-template": "warn",
         "no-unused-vars": "warn",
-        "prettier/prettier": "error",
         "prefer-destructuring": "warn",
         "block-spacing": "error",
         "no-trailing-spaces": "error",

@@ -1,7 +1,7 @@
-import { States } from '../enums/statuses.enum';
-import { Task } from './tasks.models';
+import { States } from '@enums';
+import { Task } from '@models';
 
-import { AchievementsStatusMap, TasksStatusMap } from '../types/maps.types';
+import { AchievementsStatusMap, TasksStatusMap } from '@types';
 
 /**
  * Challenge describes a 30-days period, during which randomly chosen
@@ -13,6 +13,6 @@ export interface Challenge {
 	state: States;
 	startDate: Date;
 	tasksOrder: Task[];
-	tasksStatus: AchievementsStatusMap;
-	achievementsStatus: TasksStatusMap;
+	tasksStatus: TasksStatusMap;
+	achievementsStatus: AchievementsStatusMap;
 }
