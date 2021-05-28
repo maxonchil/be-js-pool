@@ -13,7 +13,6 @@
     "allowSyntheticDefaultImports": true,
     "paths": {
       "@enums": ["src/enums"],
-      "@enums/*": ["src/enums/*"],
       "@models": ["src/models"],
       "@types": ["src/types"]
     }
