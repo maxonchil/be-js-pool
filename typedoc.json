@@ -1,0 +1,16 @@
+{
+  "entryPoints": [
+    "src/enums/index.ts",
+    "src/models/index.ts",
+    "src/types/index.ts"
+  ],
+  "exclude": [
+    "../node_modules",
+    "src/**/*.spec.ts",
+    "./jest.config.ts"
+  ],
+  "highlightTheme": "light-plus",
+  "name": "API Documentation",
+  "out": "docs",
+  "hideGenerator": true
+}
