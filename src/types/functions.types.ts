@@ -1,4 +1,12 @@
-import { Achievement, ActualAchievement, ArchiveItem, Challenge, Status, Task, TaskForToday } from '@models';
+import {
+	Achievement,
+	ActualAchievement,
+	ArchiveItem,
+	Challenge,
+	Status,
+	Task,
+	TaskForToday,
+} from '@models';
 
 import { AchievementsStatusMap, TasksStatusMap } from '@types';
 
@@ -16,7 +24,10 @@ export type CheckCompleteFn = (tasksStatus: TasksStatusMap) => Status;
  * @param challengeId id of challenge to get task for today.
  * @returns TaskForToday Current task with its status.
  */
-export type GetTaskForTodayFn = (challengeId: number, chellages?: Challenge[]) => TaskForToday;
+export type GetTaskForTodayFn = (
+	challengeId: number,
+	chellages: Challenge[],
+) => TaskForToday;
 
 /**
  * Returns a list of actual achievements by the challenge id.
@@ -24,7 +35,9 @@ export type GetTaskForTodayFn = (challengeId: number, chellages?: Challenge[]) =
  * @param challengeId id of challenge to get actual achievements.
  * @returns ActualAchievement[] Array of actual achievements.
  */
-export type GetActualAchievementsFn = (challengeId: string) => ActualAchievement[];
+export type GetActualAchievementsFn = (
+	challengeId: string,
+) => ActualAchievement[];
 
 /**
  * Returns all past tasks with their results by the challenge id.
