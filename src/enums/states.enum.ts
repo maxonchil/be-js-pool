@@ -3,7 +3,7 @@
  * @category Enums
  */
 export enum States {
-	Pending = 'Pending',
+	InProgress = 'In Progress',
 	Success = 'Success',
 	Failure = 'Failure',
 }

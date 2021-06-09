@@ -1,7 +1,6 @@
 import { States } from '@enums';
-import { Task } from '@models';
 
-import { AchievementsStatusMap, TasksStatusMap } from '@types';
+import { AchievementsStatusMap, TaskOrderMap, TasksStatusMap } from '@types';
 
 /**
  * Challenge describes a 30-days period, during which randomly chosen
@@ -9,10 +8,10 @@ import { AchievementsStatusMap, TasksStatusMap } from '@types';
  * @category Interfaces
  */
 export interface Challenge {
-	id: string;
+	id: number;
 	state: States;
-	startDate: Date;
-	tasksOrder: Task[];
+	startDate: string;
+	tasksOrder: TaskOrderMap;
 	tasksStatus: TasksStatusMap;
 	achievementsStatus: AchievementsStatusMap;
 }

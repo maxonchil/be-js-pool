@@ -7,12 +7,10 @@ const config: Config.InitialOptions = {
     '<rootDir>/node_modules/',
     '<rootDir>/dist/',
   ],
-  testMatch: [
-    '<rootDir>/src/**/*.spec.ts',
-  ],
+  testMatch: ['<rootDir>/src/**/*.spec.ts'],
   verbose: false,
   notify: true,
-  notifyMode: "success-change"
+  notifyMode: 'success-change'
 };
 
 export default config;

@@ -5,7 +5,7 @@ import { Status } from '@models';
  * @category Interfaces
  */
 export interface Task {
-	id: string;
+	id: number;
 	description: string;
 }
 
