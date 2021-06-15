@@ -2,11 +2,11 @@
   "compileOnSave": true,
   "compilerOptions": {
     "target": "es5",
+    "resolveJsonModule": true,
     "module": "es2020",
     "rootDir": "./src",
     "outDir": "dist",
     "removeComments": true,
-    "strict": true,
     "moduleResolution": "node",
     "baseUrl": "./",
     "pretty": true,

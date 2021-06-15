@@ -1,17 +1,23 @@
-import { States } from '@enums';
+import { ChallengeStates } from '@enums';
 
-import { AchievementsStatusMap, TaskOrderMap, TasksStatusMap } from '@types';
+import { AchievementsStatusMap, TasksStatusMap } from '@types';
+import { ActualAchievement } from './achievements.models';
+
+import { ArchiveItem, Task } from './tasks.models';
+import { BaseNode } from './nodes.models';
 
 /**
  * Challenge describes a 30-days period, during which randomly chosen
  * 30 tasks and 5 achievements are assigned for the user.
  * @category Interfaces
  */
-export interface Challenge {
-	id: number;
-	state: States;
+export interface Challenge extends BaseNode{
+	state: ChallengeStates;
 	startDate: string;
-	tasksOrder: TaskOrderMap;
+	duration: number,
+	tasksOrder: Task[];
 	tasksStatus: TasksStatusMap;
+	actualAchievements: ActualAchievement[];
+	archiveItems: ArchiveItem[];
 	achievementsStatus: AchievementsStatusMap;
 }

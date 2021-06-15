@@ -1,4 +1,5 @@
 /**
  * @module Enums
  */
-export * from './states.enum';
+export * from './challenge-state.enum';
+export * from './status-states.enum';

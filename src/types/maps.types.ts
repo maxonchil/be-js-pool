@@ -1,4 +1,4 @@
-import { Status, TaskForToday } from '@models';
+import { Status, Task } from '@models';
 
 /**
  * Map of achievements statuses with id as key.
@@ -11,8 +11,15 @@ export type AchievementsStatusMap = Record<number, Status>;
  * @category Types
  */
 export type TasksStatusMap = Record<number, Status>;
+
 /**
- * Order for tasks during challenge
+ * Type for Statuses map of app.
  * @category Types
  */
-export type TaskOrderMap = Record<string, TaskForToday>;
+export type StatusMap = TasksStatusMap | AchievementsStatusMap;
+
+/**
+ * Map of tasks for each challenge by it id.
+ * @category Types
+ */
+export type AchievementsMap = Record<number, Task[]>;
