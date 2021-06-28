@@ -7,11 +7,8 @@ import {
 	successStatus, pendingStatus, mockedFailTasksStatusMap, failStatus,
 } from './calculateAchievementsStatus.mock';
 
-
-
-
 describe('#calculateAchievementsStatus', () => {
-	describe('Arguments', () => {
+	describe('Invalid arguments', () => {
 		describe('Achievements', () => {
 			it('should return empty object, if no achievements was passed', () => {
 				// @ts-ignore
@@ -41,7 +38,7 @@ describe('#calculateAchievementsStatus', () => {
 		});
 	});
 
-	describe('Main logic', () => {
+	describe('Valid arguments', () => {
 		it('should return achievements status map for the challenge', () => {
 			const createdAchievement = calculateAchievementsStatus(mockedAchievements, mockedTasksStatusMap);
 			expect(createdAchievement).toEqual(mockedAchievementsStatusMap);

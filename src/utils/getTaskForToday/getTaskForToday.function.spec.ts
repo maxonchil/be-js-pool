@@ -3,58 +3,61 @@ import { Challenge, Status, Task, TaskForToday } from '../../models';
 import { ChallengeStates } from '../../enums/challenge-state.enum';
 import { StatusStates } from '../../enums';
 
-const mockedTaskStatus: Status = {
-	state: StatusStates.Pending,
-	updated: new Date().toLocaleDateString(),
-};
+let mockedTaskStatus: Status;
+let mockedTask: Task;
+let mockedTaskForToday: TaskForToday;
+let mockedChallenges: Challenge[];
 
-const mockedTask: Task = {
-	id: 3,
-	description: 'Some description here',
-};
+beforeEach(() => {
+	mockedTaskStatus = {
+		state: StatusStates.Pending,
+		updated: new Date().toLocaleDateString(),
+	};
 
-const mockedTaskForToday: TaskForToday = {
-	id: 3,
-	description: 'Some description here',
-	status: mockedTaskStatus,
-};
-
-const mockedChallenges: Challenge[] = [
-	// Normal challenge
-	{
-		id: 1,
-		state: ChallengeStates.InProgress,
-		startDate: new Date().toLocaleDateString(),
-		tasksOrder: [mockedTask],
-	} as Challenge,
-	// Completed challenge
-	{
-		id: 2,
-		state: ChallengeStates.Success,
-		startDate: new Date('06/01/2021').toLocaleDateString(),
-		tasksOrder: [mockedTask],
-	} as Challenge,
-	// Not started challenge
-	{
+	mockedTask = {
 		id: 3,
-		startDate: '3/06/2021',
-		tasksOrder: [mockedTask],
-	} as Challenge,
-	// 2 days ago challenge
-	{
-		id: 4,
-		state: ChallengeStates.InProgress,
-		startDate: new Date().toLocaleDateString(),
-		tasksOrder: [mockedTask],
-	} as Challenge,
-] as Challenge[];
+		description: 'Some description here',
+	};
+
+	mockedTaskForToday = {
+		id: 3,
+		description: 'Some description here',
+		status: mockedTaskStatus,
+	};
+
+	mockedChallenges= [
+		// Normal challenge
+		{
+			id: 1,
+			state: ChallengeStates.InProgress,
+			startDate: new Date().toLocaleDateString(),
+			tasksOrder: [mockedTask],
+		} as Challenge,
+		// Completed challenge
+		{
+			id: 2,
+			state: ChallengeStates.Success,
+			startDate: new Date('06/01/2021').toLocaleDateString(),
+			tasksOrder: [mockedTask],
+		} as Challenge,
+		// Not started challenge
+		{
+			id: 3,
+			startDate: '3/06/2021',
+			tasksOrder: [mockedTask],
+		} as Challenge,
+		// 2 days ago challenge
+		{
+			id: 4,
+			state: ChallengeStates.InProgress,
+			startDate: new Date().toLocaleDateString(),
+			tasksOrder: [mockedTask],
+		} as Challenge,
+	] as Challenge[];
+});
 
 describe('#getTaskForToday', () => {
-	describe('Main logic', () => {
-		it('should return empty object if no challenge with such id', () => {
-			expect(getTaskForToday(900, mockedChallenges)).toEqual({});
-		});
-
+	describe('Valid arguments', () => {
 		it('should return task for today if today is a first day of challenge', () => {
 			expect(getTaskForToday(1, mockedChallenges)).toEqual(mockedTaskForToday);
 		});
@@ -75,10 +78,6 @@ describe('#getTaskForToday', () => {
 
 		it('should return empty object if challenge not started', () => {
 			expect(getTaskForToday(3, mockedChallenges)).toEqual({});
-		});
-
-		it('should return empty object if no task for today', () => {
-			expect(getTaskForToday(90, mockedChallenges)).toEqual({});
 		});
 	});
 });

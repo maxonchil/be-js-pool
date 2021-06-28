@@ -4,83 +4,90 @@ import { ChallengeStates } from '../../enums';
 import { AchievementsStatusMap } from '../../types';
 import { StatusStates } from '../../enums';
 
-const mockedAchievementsStatusMap: AchievementsStatusMap = {
-	1 : {
-		state: StatusStates.Pending,
-		updated: '12/06/2021',
-	},
-	2 : {
-		state: StatusStates.Success,
-		updated: '9/06/2021',
-	},
-};
+let mockedAchievementsStatusMap: AchievementsStatusMap;
+let mockedFakeAchievementsStatusMap: AchievementsStatusMap;
+let mockedActualAchievements: ActualAchievement[];
+let mockedChallenges: Challenge[];
 
-const mockedFakeAchievementsStatusMap: AchievementsStatusMap = {
-	3 : {
-		state: StatusStates.Pending,
-		updated: '12/06/2021',
-	},
-	4 : {
-		state: StatusStates.Success,
-		updated: '9/06/2021',
-	},
-};
-
-const mockedActualAchievements: ActualAchievement[] = [
-	{
-		id: 1,
-		description: "Complete each task 7 days in a row",
-		status: {
+beforeEach(() => {
+	mockedAchievementsStatusMap = {
+		1 : {
 			state: StatusStates.Pending,
 			updated: '12/06/2021',
 		},
-		image: 'some url',
-	},
-	{
-		id: 2,
-		description: "Complete five tasks before 8:00 AM",
-		status: {
+		2 : {
 			state: StatusStates.Success,
 			updated: '9/06/2021',
 		},
-		image: 'some url2',
-	},
-];
+	};
 
-const mockedChallenges: Challenge[] = [
-	// Normal challenge
-	{
-		id: 1,
-		state: ChallengeStates.InProgress,
-		startDate: '1/06/2021',
-		actualAchievements: mockedActualAchievements,
-		achievementsStatus: mockedAchievementsStatusMap,
-	} as Challenge,
-	// Challenge with not real achievements id's in achievementsStatusMap
-	{
-		id: 2,
-		state: ChallengeStates.Success,
-		startDate: '1/06/2021',
-		actualAchievements: mockedActualAchievements,
-		achievementsStatus: mockedFakeAchievementsStatusMap,
-	} as Challenge,
-	// Completed challenge
-	{
-		id: 3,
-		startDate: '1/06/2021',
-		state: ChallengeStates.Success,
-		actualAchievements: [] as ActualAchievement[],
-	} as Challenge,
-	// Not started challenge
-	{
-		id: 4,
-		startDate: '12/06/2021',
-		actualAchievements: [] as ActualAchievement[],
-	} as Challenge,
-] as Challenge[];
+	mockedFakeAchievementsStatusMap = {
+		3 : {
+			state: StatusStates.Pending,
+			updated: '12/06/2021',
+		},
+		4 : {
+			state: StatusStates.Success,
+			updated: '9/06/2021',
+		},
+	};
+
+	mockedActualAchievements = [
+		{
+			id: 1,
+			description: "Complete each task 7 days in a row",
+			status: {
+				state: StatusStates.Pending,
+				updated: '12/06/2021',
+			},
+			image: 'some url',
+		},
+		{
+			id: 2,
+			description: "Complete five tasks before 8:00 AM",
+			status: {
+				state: StatusStates.Success,
+				updated: '9/06/2021',
+			},
+			image: 'some url2',
+		},
+	];
+
+	mockedChallenges = [
+		// Normal challenge
+		{
+			id: 1,
+			state: ChallengeStates.InProgress,
+			startDate: '1/06/2021',
+			actualAchievements: mockedActualAchievements,
+			achievementsStatus: mockedAchievementsStatusMap,
+		} as Challenge,
+		// Challenge with not real achievements id's in achievementsStatusMap
+		{
+			id: 2,
+			state: ChallengeStates.Success,
+			startDate: '1/06/2021',
+			actualAchievements: mockedActualAchievements,
+			achievementsStatus: mockedFakeAchievementsStatusMap,
+		} as Challenge,
+		// Completed challenge
+		{
+			id: 3,
+			startDate: '1/06/2021',
+			state: ChallengeStates.Success,
+			actualAchievements: [] as ActualAchievement[],
+		} as Challenge,
+		// Not started challenge
+		{
+			id: 4,
+			startDate: '12/06/2021',
+			actualAchievements: [] as ActualAchievement[],
+		} as Challenge,
+	] as Challenge[];
+});
 
 describe('#getActualAchievements', () => {
-	describe('Main logic', () => {
+	describe('Valid arguments', () => {
 		it('should return actual achievements by challenge id', () => {
 			expect(getActualAchievements(1, mockedChallenges)).toEqual(mockedActualAchievements);
 		});

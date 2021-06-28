@@ -8,7 +8,12 @@ import {
 	mockedTasksStatus
 } from './startNewChallenge.function.mock';
 
-const mockedExpectedChallenge = {
+let mockedExpectedChallenge: Challenge;
+let mockedChallenges: Challenge[];
+let mockedFinishedChallenges: Challenge[];
+
+beforeEach(() => {
+	mockedExpectedChallenge = {
 		id: 2,
 		state: ChallengeStates.InProgress,
 		startDate: new Date().toLocaleDateString(),
@@ -20,82 +25,41 @@ const mockedExpectedChallenge = {
 		achievementsStatus: mockedAchievementStatus,
 	} as Challenge;
 
-const mockedChallenges: Challenge[] = [
-	{
-		id: 1,
-		state: ChallengeStates.InProgress,
-		startDate: new Date().toLocaleDateString(),
-		tasksOrder: mockedTasks,
-		tasksStatus: mockedTasksStatus,
-		duration: 30,
-		archiveItems: [],
-		actualAchievements: mockedActualAchievements,
-		achievementsStatus: mockedAchievementStatus,
-	} as Challenge,
-];
+	mockedChallenges = [
+		{
+			id: 1,
+			state: ChallengeStates.InProgress,
+			startDate: new Date().toLocaleDateString(),
+			tasksOrder: mockedTasks,
+			tasksStatus: mockedTasksStatus,
+			duration: 30,
+			archiveItems: [],
+			actualAchievements: mockedActualAchievements,
+			achievementsStatus: mockedAchievementStatus,
+		} as Challenge,
+	];
 
-const mockedFinishedChallenges: Challenge[] = [
-	{
-		id: 1,
-		state: ChallengeStates.Success,
-		startDate: new Date().toLocaleDateString(),
-		tasksOrder: mockedTasks,
-		tasksStatus: mockedTasksStatus,
-		duration: 30,
-		archiveItems: [],
-		actualAchievements: mockedActualAchievements,
-		achievementsStatus: mockedAchievementStatus,
-	} as Challenge,
-];
+	mockedFinishedChallenges = [
+		{
+			id: 1,
+			state: ChallengeStates.Success,
+			startDate: new Date().toLocaleDateString(),
+			tasksOrder: mockedTasks,
+			tasksStatus: mockedTasksStatus,
+			duration: 30,
+			archiveItems: [],
+			actualAchievements: mockedActualAchievements,
+			achievementsStatus: mockedAchievementStatus,
+		} as Challenge,
+	];
+});
 
 describe('#startNewChallenge', () => {
-	describe('Arguments', () => {
+	describe('Invalid arguments', () => {
 		describe('Empty tasks', () => {
 			it('should return empty object, if no tasks list was passed as an argument', () => {
 				const createdChallenge = startNewChallenge([], mockedChallenges, 0, 0);
 				expect(createdChallenge).toEqual({})
-			});
-
-			it('should return empty object, if "tasks" arguments is a string', () => {
-				//@ts-ignore
-				const createdChallenge = startNewChallenge('', undefined, 0, 0);
-				expect(createdChallenge).toEqual({});
-			});
-
-			it('should return empty object, if "tasks" arguments is an object', () => {
-				//@ts-ignore
-				const createdChallenge = startNewChallenge({}, undefined, 0, 0);
-				expect(createdChallenge).toEqual({});
-			});
-
-			it('should return empty object, if "tasks" arguments is a function', () => {
-				//@ts-ignore
-				const createdChallenge = startNewChallenge(() => {}, undefined, 0, 0);
-				expect(createdChallenge).toEqual({});
-			});
-
-			it('should return empty object, if "tasks" arguments is a number', () => {
-				//@ts-ignore
-				const createdChallenge = startNewChallenge(3, undefined, 0, 0);
-				expect(createdChallenge).toEqual({});
-			});
-
-			it('should return empty object, if "challenges" arguments is a number', () => {
-				//@ts-ignore
-				const createdChallenge = startNewChallenge(mockedTasks, 1, 0, 0);
-				expect(createdChallenge).toEqual({});
-			});
-
-			it('should return empty object, if "challenges" arguments is an object', () => {
-				//@ts-ignore
-				const createdChallenge = startNewChallenge(mockedTasks, {}, 0, 0);
-				expect(createdChallenge).toEqual({});
-			});
-
-			it('should return empty object, if "challenges" arguments is a function', () => {
-				//@ts-ignore
-				const createdChallenge = startNewChallenge(mockedTasks, () => undefined, 0, 0);
-				expect(createdChallenge).toEqual({});
 			});
 		});
 
@@ -130,7 +94,7 @@ describe('#startNewChallenge', () => {
 		});
 	});
 
-	describe('Main logic', () => {
+	describe('Valid arguments', () => {
 		describe('Creation', () => {
 			it('should return newly created task, if challenges array is empty', () => {
 				const { tasksOrder, ...createdChallenge } = startNewChallenge(mockedTasks, [], 0, 0);

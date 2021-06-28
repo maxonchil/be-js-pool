@@ -2,70 +2,57 @@ import { checkComplete } from './checkComplete.function';
 import { TasksStatusMap } from '../../types';
 import { StatusStates } from '../../enums';
 
-const mockedTasksStatus: TasksStatusMap = {
-	1: {
-		state: StatusStates.Pending,
-		updated: new Date().toLocaleDateString(),
-	},
-	2: {
-		state: StatusStates.Pending,
-		updated: new Date().toLocaleDateString(),
-	},
-};
+let mockedTasksStatus: TasksStatusMap;
+let mockedSuccessStatus: TasksStatusMap;
+let mockedFailStatus: TasksStatusMap;
+let mockedInProgressStatus: TasksStatusMap;
 
-const mockedSuccessStatus: TasksStatusMap = {
-	3: {
-		state: StatusStates.Success,
-		updated: new Date().toLocaleDateString(),
-	},
-};
+beforeEach(() => {
+	mockedTasksStatus = {
+		1: {
+			state: StatusStates.Pending,
+			updated: new Date().toLocaleDateString(),
+		},
+		2: {
+			state: StatusStates.Pending,
+			updated: new Date().toLocaleDateString(),
+		},
+	};
 
-const mockedFailStatus: TasksStatusMap = {
-	3: {
-		state: StatusStates.Failure,
-		updated: new Date().toLocaleDateString(),
-	},
-};
+	mockedSuccessStatus = {
+		3: {
+			state: StatusStates.Success,
+			updated: new Date().toLocaleDateString(),
+		},
+	};
 
-const mockedInProgressStatus: TasksStatusMap = {
-	3: {
-		state: StatusStates.Pending,
-		updated: new Date().toLocaleDateString(),
-	},
-	4: {
-		state: StatusStates.Success,
-		updated: new Date().toLocaleDateString(),
-	},
-};
+	mockedFailStatus = {
+		3: {
+			state: StatusStates.Failure,
+			updated: new Date().toLocaleDateString(),
+		},
+	};
+
+	mockedInProgressStatus = {
+		3: {
+			state: StatusStates.Pending,
+			updated: new Date().toLocaleDateString(),
+		},
+		4: {
+			state: StatusStates.Success,
+			updated: new Date().toLocaleDateString(),
+		},
+	};
+});
 
 describe('#checkComplete', () => {
-	describe('Arguments', () => {
+	describe('Invalid arguments', () => {
 		it('should return empty object if tasksStatus is empty', () => {
 			expect(checkComplete({})).toEqual({});
 		});
-
-		it('should return empty object if tasksStatus argument is a number', () => {
-			// @ts-ignore
-			expect(checkComplete(1)).toEqual({});
-		});
-
-		it('should return empty object if tasksStatus argument is a string', () => {
-			// @ts-ignore
-			expect(checkComplete('')).toEqual({});
-		});
-
-		it('should return empty object if tasksStatus argument is a function', () => {
-			// @ts-ignore
-			expect(checkComplete(() => {})).toEqual({});
-		});
-
-		it('should return empty object if tasksStatus argument is an array', () => {
-			// @ts-ignore
-			expect(checkComplete([])).toEqual({});
-		});
 	});
 
-	describe('Main logic', () => {
+	describe('Valid arguments', () => {
 		it('should return status of achievements, by tasksStatus', () => {
 			expect(checkComplete(mockedTasksStatus)).toBeTruthy();
 		});

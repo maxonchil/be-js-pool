@@ -2,43 +2,49 @@ import { ArchiveItem, Challenge, Status } from '../../models';
 import { ChallengeStates, StatusStates } from '../../enums';
 import { getTaskArchive } from './getTaskArchive.function';
 
-const mockedStatus: Status = {
-	state: StatusStates.Pending,
-	updated: '12/06/2021',
-};
+let mockedStatus: Status;
+let mockedArchiveItems: ArchiveItem[];
+let mockedChallenges: Challenge[];
 
-const mockedArchiveItems: ArchiveItem[] = [
-	{
-		id: 1,
-		description: 'Some genius description',
-		status: mockedStatus,
-	},
-];
+beforeEach(() => {
+	mockedStatus = {
+		state: StatusStates.Pending,
+		updated: '12/06/2021',
+	};
 
-const mockedChallenges: Challenge[] = [
-	// Normal challenge
-	{
-		id: 1,
-		state: ChallengeStates.InProgress,
-		archiveItems: mockedArchiveItems,
-	} as Challenge,
-	// Completed without archive items
-	{
-		id: 2,
-		state: ChallengeStates.Success,
-		startDate: '1/6/2021',
-		archiveItems: [] as ArchiveItem[],
-	} as Challenge,
-	// Not started challenge
-	{
-		id: 2,
-		startDate: '12/12/2021',
-		archiveItems: [] as ArchiveItem[],
-	} as Challenge,
-];
+	mockedArchiveItems = [
+		{
+			id: 1,
+			description: 'Some genius description',
+			status: mockedStatus,
+		},
+	];
+
+	mockedChallenges = [
+		// Normal challenge
+		{
+			id: 1,
+			state: ChallengeStates.InProgress,
+			archiveItems: mockedArchiveItems,
+		} as Challenge,
+		// Completed without archive items
+		{
+			id: 2,
+			state: ChallengeStates.Success,
+			startDate: '1/6/2021',
+			archiveItems: [] as ArchiveItem[],
+		} as Challenge,
+		// Not started challenge
+		{
+			id: 2,
+			startDate: '12/12/2021',
+			archiveItems: [] as ArchiveItem[],
+		} as Challenge,
+	];
+});
 
 describe('#getTaskArchive', () => {
-	describe('Main logic', () => {
+	describe('Valid arguments', () => {
 		it('should return empty object if no challenge with such id', () => {
 			expect(getTaskArchive(900, mockedChallenges)).toEqual([]);
 		});

@@ -2,27 +2,32 @@ import { isSomeChallengeInProgress } from './isSomeChallengeInProgress.function'
 import { Challenge } from '../../models';
 import { ChallengeStates } from '../../enums';
 
-const mockedProgressChallenges: Challenge[] = [
-	{
-		id: 1,
-		state: ChallengeStates.InProgress,
-	} as Challenge,
-];
+let mockedProgressChallenges: Challenge[];
+let mockedFinishedChallenges: Challenge[];
 
-const mockedFinishedChallenges: Challenge[] = [
-	{
-		id: 1,
-		state: ChallengeStates.InProgress,
-	} as Challenge,
-];
+beforeEach(() => {
+	mockedProgressChallenges = [
+		{
+			id: 1,
+			state: ChallengeStates.InProgress,
+		} as Challenge,
+	];
+
+	mockedFinishedChallenges = [
+		{
+			id: 1,
+			state: ChallengeStates.InProgress,
+		} as Challenge,
+	];
+});
 
 describe('#isSomeChallangeInProgress', () => {
-	describe('Main logic', () => {
+	describe('Valid arguments', () => {
 		it('should return true if some of passed challenges in progress', () => {
 			expect(isSomeChallengeInProgress(mockedProgressChallenges)).toBeTruthy();
 		});
 
-		it('should return false if no one of passed challenges in progress', () => {
+		it('should return true if no one of passed challenges in progress', () => {
 			expect(isSomeChallengeInProgress(mockedFinishedChallenges)).toBeTruthy();
 		});
 
