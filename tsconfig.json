@@ -2,11 +2,11 @@
   "compileOnSave": true,
   "compilerOptions": {
     "target": "es5",
+    "resolveJsonModule": true,
     "module": "es2020",
     "rootDir": "./src",
     "outDir": "dist",
     "removeComments": true,
-    "strict": true,
     "moduleResolution": "node",
     "baseUrl": "./",
     "pretty": true,
@@ -14,7 +14,8 @@
     "paths": {
       "@enums": ["src/enums"],
       "@models": ["src/models"],
-      "@types": ["src/types"]
+      "@types": ["src/types"],
+      "@utils": ["src/utils"]
     }
   },
   "exclude": [

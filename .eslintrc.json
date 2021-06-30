@@ -3,11 +3,9 @@
         "es2021": true
     },
     "plugins": [
-        "@typescript-eslint",
-        "prettier"
+        "@typescript-eslint"
     ],
     "extends": [
-        "prettier",
         "eslint:recommended",
         "plugin:import/typescript",
         "plugin:@typescript-eslint/eslint-recommended",
@@ -15,6 +13,7 @@
     ],
     "parser": "@typescript-eslint/parser",
     "rules": {
+        "@typescript-eslint/no-var-requires": "warn",
         "prefer-template": "warn",
         "no-unused-vars": "warn",
         "prefer-destructuring": "warn",

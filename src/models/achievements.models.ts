@@ -1,4 +1,4 @@
-import { Status } from '@models';
+import { BaseNode, Status } from '@models';
 
 import { CheckCompleteFn } from '@types';
 
@@ -6,8 +6,7 @@ import { CheckCompleteFn } from '@types';
  * Base entity which describe 'id' and 'description' types for Achievements.
  * @category Interfaces
  */
-interface BaseAchievement {
-	id: string;
+interface BaseAchievement extends BaseNode {
 	description: string;
 }
 
