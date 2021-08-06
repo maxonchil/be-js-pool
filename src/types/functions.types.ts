@@ -23,13 +23,11 @@ export type CheckCompleteFn = (tasksStatus: TasksStatusMap) => StatusStates;
  * Returns a current task with its status by the challenge id.
  * @category Functions
  * @param challengeId id of challenge to get task for today.
- * @param challenges Full list of challenges.
- * @returns TaskForToday Current task with its status.
+ * @returns TaskForToday Current task with its status promise.
  */
 export type GetTaskForTodayFn = (
-	challengeId: number,
-	challenges: Challenge[],
-) => TaskForToday;
+	challengeId: string,
+) => Promise<TaskForToday>;
 
 /**
  * Returns a list of actual achievements by the challenge id.
@@ -47,42 +45,40 @@ export type GetActualAchievementsFn = (
  * Returns all past tasks with their results by the challenge id.
  * @category Functions
  * @param challengeId of challenge to get archive items.
- * @param challenges Full list of challenges.
- * @returns ArchiveItem[] Array of past tasks with their results.
+ * @param field field name of challenge object.
+ * @returns ArchiveItem[] Array of past tasks with their results as promise.
  */
-export type GetTaskArchiveFn = (
-	challengeId: number,
-	challenges: Challenge[],
-) => ArchiveItem[];
+export type GetChallengeDataFn = <T>(
+	challengeId: string,
+	field: keyof Challenge,
+) => Promise<T[]>;
 
 /**
  * Returns a new challenge. Challenge duration that by default should be 30 days,
  * number of achievements – by default, challenge duration / 6.
  * @category Functions
  * @param tasks Array of tasks for new challenge.
- * @param challenges Array of challenges for new challenge.
  * @param duration Duration of a new challenge.
  * @param achievementsCount Count of achievement for a new challenge.
- * @returns Challenge New challenge.
+ * @param creatorId Id of challenge creator.
+ * @returns Challenge New challenge as promise.
  */
 export type StartNewChallengeFn = (
 	tasks: Task[],
-	challenges: Challenge[],
 	duration: number,
 	achievementsCount: number,
-) => Challenge;
+	creatorId: string,
+) => Promise<Challenge>;
 
 /**
  * Returns achievements status for the challenge by its achievements list and tasks status.
  * @category Functions
- * @param achievements List of an achievements.
  * @param tasksStatuses Map of tasks and their statuses.
  * @returns AchievementsStatusMap Map of statuses for the challenge with id as key.
  */
 export type CalculateAchievementsStatusFn = (
-	achievements: Achievement[],
 	tasksStatuses: TasksStatusMap,
-) => AchievementsStatusMap;
+) => Promise<AchievementsStatusMap>;
 
 /**
  * Find and return challenge by it id.
@@ -111,12 +107,12 @@ export type IsSomeChallengeInProgressFn = (
  * @category Functions
  * @param challengeDuration Duration of a new challenge.
  * @param achievementsCount Count of achievement for a new challenge.
- * @returns ActualAchievement Array of actual achievements.
+ * @returns ActualAchievement Array of actual achievements as promise.
  */
 export type BuildActualAchievementsFn = (
 	challengeDuration: number,
 	achievementsCount: number,
-) => ActualAchievement[]
+) => Promise<ActualAchievement[]>
 
 /**
  * Create a status map from passed items.
@@ -132,11 +128,11 @@ export type BuildStatusMapFn = <T extends BaseNode>(
  * Return tasks for achievement by it id;
  * @category Functions
  * @param achievementId Id of target achievement.
- * @returns Task[] Array of tasks for target achievement.
+ * @returns Task[] Array of tasks for target achievement as prmise.
  */
 export type GetTasksForAchievementFn = (
-	achievementId: number,
-) => Task[];
+	achievementId: string,
+) => Promise<Task[]>;
 
 /**
  * Filter status map by source entity array.

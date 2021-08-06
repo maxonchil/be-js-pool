@@ -6,12 +6,11 @@ export const filterStatusMap: FilterStatusMapFn = <T extends BaseNode>(
 	statusMap: StatusMap,
 	source: T[] = [],
 ): StatusMap => Object.entries(statusMap)
-	.reduce((memo, [id, status]) => {
-		const itemId = Number(id);
-		const isInScope = source.find(({ id: entityId }) => entityId === itemId);
+	.reduce((memo, [_id, status]) => {
+		const isInScope = source.find(({ _id: entityId }) => entityId === _id);
 		if (!isInScope) return memo;
 		return {
 			...memo,
-			[itemId]: status,
+			[_id]: status,
 		};
 }, {});

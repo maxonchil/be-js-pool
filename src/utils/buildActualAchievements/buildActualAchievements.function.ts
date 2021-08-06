@@ -1,27 +1,16 @@
-import { Achievement, ActualAchievement } from '@models';
-import { StatusStates } from '../../enums';
+import { ActualAchievement } from '@models';
 
 import { BuildActualAchievementsFn } from '@types';
 
-import { achievements, defaultAchievements } from '../../data/achievements.json';
-const defaultAchievementsCount = 2;
+import { getALlAchievements, transformAchievements } from '../achievements-utils';
 
-export const buildActualAchievements: BuildActualAchievementsFn = (
+export const buildActualAchievements: BuildActualAchievementsFn = async (
 	challengeDuration: number,
 	achievementsCount: number,
-): ActualAchievement[] => {
-	const validAchievementsCount = (achievementsCount || challengeDuration / 6) - defaultAchievementsCount;
-	const achievementsToIncludeCount = validAchievementsCount > achievements.length
-		? achievements.length
-		: validAchievementsCount;
-	const mergedAchievements = [...defaultAchievements, ...achievements.slice(0, achievementsToIncludeCount)];
+): Promise<ActualAchievement[]> => {
+	const achievements = await getALlAchievements();
+	const validAchievementsCount = (achievementsCount || challengeDuration / 6);
+	const targetAchievements = achievements.slice(validAchievementsCount);
 
-	return mergedAchievements.map((achievement: Achievement) => ({
-		...achievement,
-		image: 'mockUrl',
-		status: {
-			state: StatusStates.Pending,
-			updated: new Date().toLocaleDateString(),
-		},
-	} as ActualAchievement));
+	return transformAchievements(targetAchievements);
 };

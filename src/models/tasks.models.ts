@@ -4,7 +4,7 @@ import { BaseNode, Status } from '@models';
  * Task describes a single action that should be done by the user.
  * @category Interfaces
  */
-export interface Task extends BaseNode{
+export interface Task extends BaseNode {
 	description: string;
 }
 

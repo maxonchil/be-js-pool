@@ -2,10 +2,11 @@
   "name": "js-mentoring-pool",
   "version": "1.0.0",
   "description": "Be part for JS mentoring program app",
-  "main": "src/index.ts",
+  "main": "index.ts",
   "scripts": {
     "build": "tsc",
-    "start": "tsc -w & nodemon dist",
+    "start": "tsc -w & nodemon --experimental-modules --experimental-json-modules --es-module-specifier-resolution=node dist",
+    "reset-db": "node --experimental-specifier-resolution=node --loader ts-node/esm ./src/scripts/seed-db-data.script.ts",
     "test": "jest",
     "lint": "eslint src --quiet",
     "doc": "typedoc"
@@ -13,20 +14,36 @@
   "author": "maxonchil@gmail.com",
   "license": "ISC",
   "devDependencies": {
+    "@k-foss/ts-esnode": "^2.0.2",
     "@types/jest": "^26.0.23",
     "@types/lodash": "^4.14.170",
+    "@types/socket.io": "^3.0.2",
     "@typescript-eslint/eslint-plugin": "^4.24.0",
     "@typescript-eslint/parser": "^4.24.0",
+    "cors": "^2.8.5",
     "eslint": "^7.26.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.23.2",
     "eslint-plugin-prettier": "^3.4.0",
     "jest": "^26.6.3",
     "lodash": "^4.17.21",
+    "mongoose": "^5.9.15",
+    "mongoose-seed-2": "^0.1.0",
+    "node-schedule": "^2.0.0",
     "nodemon": "^2.0.7",
+    "socket.io": "^4.1.2",
     "ts-jest": "^26.5.6",
     "ts-node": "^9.1.1",
     "typedoc": "^0.20.36",
     "typescript": "^4.2.4"
+  },
+  "dependencies": {
+    "bcrypt": "^4.0.1",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0"
   }
 }
