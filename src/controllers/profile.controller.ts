@@ -2,8 +2,6 @@ import { Request, Response } from 'express';
 import { UserModel } from '../mongoose';
 
 export class ProfileController {
-	constructor() {}
-
 	async getUser(req: Request, res: Response) {
 		try {
 			const { id } = req.user;

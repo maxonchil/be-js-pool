@@ -4,8 +4,6 @@ import { getChallengeData } from '../utils';
 import { ActualAchievement } from '@models';
 
 export class AchievementsController {
-	constructor() {}
-
 	async getActualAchievements(req: Request, res: Response) {
 		try {
 			const { challengeId } = req.query;

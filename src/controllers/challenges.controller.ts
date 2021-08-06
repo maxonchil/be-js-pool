@@ -9,8 +9,6 @@ import { Challenge, Task } from '@models';
 
 
 export class ChallengesController {
-	constructor() {}
-
 	async create(req: Request, res: Response) {
 		const { id } = req.user;
 		const { tasks = [], duration, achievementsCount } = req.body;

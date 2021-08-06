@@ -4,8 +4,6 @@ import { getChallengeData, getTaskForToday } from '../utils';
 import { ArchiveItem } from '@models';
 
 export class TasksController {
-	constructor() {}
-
 	async getTasksForToday(req: Request, res: Response) {
 		try {
 			const { challengeId } = req.query;

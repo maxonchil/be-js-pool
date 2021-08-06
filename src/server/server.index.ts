@@ -2,7 +2,7 @@ import * as socketIO from 'socket.io';
 import { handleSockets } from '../sockets';
 import mongoose from 'mongoose';
 
-import { MONGO_URL } from '../config/config';
+import { MONGO_URL, PORT } from '../config/config';
 import { authSocketMiddleware } from '../sockets/ middlewares/auth.middleware';
 
 import { Express } from 'express';
@@ -15,7 +15,7 @@ export const connectDB = (): Promise<mongoose.Mongoose> => {
 };
 
 export const setupServer = (app: Express) => {
-	const port = 4000;
+	const port = process.env.PORT || PORT;
 	return app.listen(port, () => {
 		console.log(`Listening to requests on ${port}`);
 	});
